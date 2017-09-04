@@ -36,7 +36,7 @@ module.exports = {
 	plugins: [
 		new HtmlWebpackPlughin({
 			title: 'Recipe Box',
-			template: '.src/index.html'
+			template: './src/index.html'
 		}),
 		new ExtractTextPlugin({
 			filename: 'css/style.css',
