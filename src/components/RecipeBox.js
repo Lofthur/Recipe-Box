@@ -1,0 +1,18 @@
+import React from 'react';
+import { AddRecipe } from './AddRecipe';
+import { RecipeList } from './RecipeList'
+
+
+export class RecipeBox extends React.Component {
+	render() {
+		return (
+				<div>
+					<div className="header-area">
+						<h1>Recipe Box</h1>
+						<AddRecipe />
+					</div>
+					<RecipeList />
+				</div>
+			);
+	}
+}
