@@ -1,6 +1,7 @@
 import React from 'react';
 import { AddRecipe } from './AddRecipe';
-import { RecipeList } from './RecipeList'
+import { RecipeList } from './RecipeList';
+import { AddRecipeForm } from './AddRecipeForm';
 
 
 export class RecipeBox extends React.Component {
@@ -9,9 +10,10 @@ export class RecipeBox extends React.Component {
 				<div>
 					<div className="header-area">
 						<h1>Recipe Box</h1>
-						<AddRecipe />
+						<AddRecipe addRecipeClick={this.props.addRecipeClick} />
 					</div>
-					<RecipeList />
+					<RecipeList recipes={this.props.recipes}/>
+					<AddRecipeForm />
 				</div>
 			);
 	}
