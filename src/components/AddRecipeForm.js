@@ -1,17 +1,43 @@
 import React from 'react';
 
 export class AddRecipeForm extends React.Component {
+	constructor(props) {
+		super(props);
+		
+		this.state = {
+			name: '',
+			desc: '',
+			ingr: []
+		}
+
+		this.handleChange = this.handleChange.bind(this);
+		this.handleClick = this.handleClick.bind(this);
+	}
+
+	handleChange(e) {
+		const name = e.target.name;
+		const value = e.target.value;
+		this.setState({
+			[name]: value
+		});
+	}
+
+	handleClick(e) {
+
+	}
+
 	render() {
+
 		return(
-			<form action="#">
+			<form>
 				<h1>Add Recipe</h1>
 				<div>
-					<label htmlFor="recipe-name">Recipe Name: </label>
-					<input type="text" id="recipe-name" name="recipe_name" />
+					<label htmlFor="name">Recipe Name: </label>
+					<input type="text" name="name" value={this.state.name} onChange={this.handleChange}/>
 				</div>
 				<div>
-					<label htmlFor="ingredient-name">Ingredient: </label>
-					<input type="text" id="ingredient-name" name="ingredient_name" />
+					<label htmlFor="ingr">Ingredient: </label>
+					<input type="text" name="ingr" />
 					<button>Add</button>
 				</div>
 				<div>
@@ -22,11 +48,11 @@ export class AddRecipeForm extends React.Component {
 					</ul>
 				</div>
 				<div>
-					<label htmlFor="description">Description</label>
-					<textarea name="description" id="" cols="30" rows="10"></textarea>
+					<label htmlFor="desc">Description</label>
+					<textarea name="desc" cols="30" rows="10" value={this.state.desc} onChange={this.handleChange}></textarea>
 				</div>
 				<div>
-					<button type="submit">Add Recipe</button>
+					<button type="button">Add Recipe</button>
 				</div>
 			</form>
 		);
