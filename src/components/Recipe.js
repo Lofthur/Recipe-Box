@@ -7,6 +7,7 @@ export class Recipe extends React.Component {
 		return(
 			<li>
 				<h3>{this.props.recipe.name}</h3>
+				<h2>{this.props.recipe.key}</h2>
 				<ul>
 					{
 						this.props.recipe.ingr.map((item, i) => <li key={`${item}_${i}`}>{item}</li>)

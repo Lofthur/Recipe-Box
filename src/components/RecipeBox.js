@@ -10,7 +10,7 @@ export class RecipeBox extends React.Component {
 						<h1>Recipe Box</h1>
 						<AddRecipe addRecipeClick={this.props.addRecipeClick} />
 					</div>
-					<RecipeList recipes={this.props.recipes}/>
+					<RecipeList recipes={this.props.recipes} removeRecipe={this.props.removeRecipe} />
 				</div>
 			);
 	}
