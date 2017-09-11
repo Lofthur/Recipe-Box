@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { RecipeBox } from './components/RecipeBox';
+import { AddRecipeForm } from './components/AddRecipeForm';
 
 import style from './styles/app.sass';
 import recipesData from './data/data.recipes';
@@ -14,6 +15,8 @@ class App extends React.Component {
 		this.state = {
 			recipes: {}
 		}
+
+		this.addRecipe = this.addRecipe.bind(this);
 	}
 
 	componentDidMount() {
@@ -22,10 +25,22 @@ class App extends React.Component {
 		});
 	}
 
+	addRecipe(recipe) {
+		const tempState = {...this.state.recipes};
+		const timeStamp = Date.now();
+		tempState[`recipe-${timeStamp}`] = recipe;
+		this.setState({
+			recipes: tempState
+		});
+	}
+
+
 	render() {
 		return(
 			<div>
+				<button onClick={() => this.addRecipe()}>Test State</button>
 				<RecipeBox recipes={this.state.recipes} />
+				<AddRecipeForm addRecipe={this.addRecipe}/>
 			</div>
 		);
 	}

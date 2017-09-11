@@ -9,7 +9,7 @@ export class Recipe extends React.Component {
 				<h3>{this.props.recipe.name}</h3>
 				<ul>
 					{
-						this.props.recipe.ingr.map(item => <li key={item}>{item}</li>)
+						this.props.recipe.ingr.map((item, i) => <li key={`${item}_${i}`}>{item}</li>)
 					}
 				</ul>
 				<div className="recipe-description">{this.props.recipe.desc}</div>

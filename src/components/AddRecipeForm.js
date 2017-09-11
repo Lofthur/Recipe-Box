@@ -1,60 +1,67 @@
 import React from 'react';
 
+
 export class AddRecipeForm extends React.Component {
 	constructor(props) {
 		super(props);
-		
-		this.state = {
-			name: '',
-			desc: '',
-			ingr: []
-		}
 
-		this.handleChange = this.handleChange.bind(this);
-		this.handleClick = this.handleClick.bind(this);
+		this.changeIngrStr = this.changeIngrStr.bind(this);
+		this.addIngredient = this.addIngredient.bind(this);
+		this.createRecipe = this.createRecipe.bind(this);
+
+		this.state = {
+			ingredientString: '',
+			ingredientArr: []
+		}
 	}
 
-	handleChange(e) {
-		const name = e.target.name;
-		const value = e.target.value;
+	changeIngrStr(e) {
 		this.setState({
-			[name]: value
+			ingredientString: e.target.value
 		});
 	}
 
-	handleClick(e) {
+	addIngredient(ingredient) {
+		const tempArr = [...this.state.ingredientArr];
+		tempArr.push(ingredient);
+		this.setState({
+			ingredientArr: tempArr,
+			ingredientString: ''
+		});
+
 
 	}
 
-	render() {
+	createRecipe(e) {
+		e.preventDefault();
+		const recipe = {
+			name: this.name.value,
+			desc: this.desc.value,
+			ingr: this.state.ingredientArr,
+		}	
 
+		this.setState({
+			ingredientArr: []
+		});
+
+		this.props.addRecipe(recipe);
+	}
+
+	render() {
+		
 		return(
-			<form>
-				<h1>Add Recipe</h1>
+			<form onSubmit={this.createRecipe}>
+				<input ref={(input) => this.name = input} type="text" placeholder="Name" />
 				<div>
-					<label htmlFor="name">Recipe Name: </label>
-					<input type="text" name="name" value={this.state.name} onChange={this.handleChange}/>
+					<input value={this.state.ingredientString} onChange={this.changeIngrStr} type="text" placeholder="Ingredient" />
+					<button type="button" onClick={() => this.addIngredient(this.state.ingredientString)}>Add</button>
 				</div>
-				<div>
-					<label htmlFor="ingr">Ingredient: </label>
-					<input type="text" name="ingr" />
-					<button>Add</button>
-				</div>
-				<div>
-					<ul>
-						<li>Banana</li>
-						<li>Salt</li>
-						<li>Pepper</li>
-					</ul>
-				</div>
-				<div>
-					<label htmlFor="desc">Description</label>
-					<textarea name="desc" cols="30" rows="10" value={this.state.desc} onChange={this.handleChange}></textarea>
-				</div>
-				<div>
-					<button type="button">Add Recipe</button>
-				</div>
-			</form>
+				<ul>
+					{this.state.ingredientArr.map((item, i) => <li key={`${item}_${i}`}>{item}</li>)}
+				</ul>
+				<textarea ref={(input) => this.desc = input} cols="30" rows="10" placeholder="Description"></textarea>
+				<button type="submit">Add Recipe</button>
+			</form>			
 		);
 	}
 }
