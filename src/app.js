@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { RecipeBox } from './components/RecipeBox';
 import { AddRecipeForm } from './components/AddRecipeForm';
+import { EditRecipeForm } from './components/EditRecipeForm';
 
 import style from './styles/app.sass';
 import recipesData from './data/data.recipes';
@@ -18,6 +19,7 @@ class App extends React.Component {
 
 		this.addRecipe = this.addRecipe.bind(this);
 		this.removeRecipe = this.removeRecipe.bind(this);
+		this.toEditForm = this.toEditForm.bind(this);
 	}
 
 	componentDidMount() {
@@ -44,12 +46,17 @@ class App extends React.Component {
 
 	}
 
+	toEditForm(key) {
+		const recipe = this.state.recipes[key];
+		console.log(recipe);
+	}
+
 	render() {
 		return(
 			<div>
 				<button onClick={() => this.addRecipe()}>Test State</button>
-				<RecipeBox recipes={this.state.recipes} removeRecipe={this.removeRecipe} />
-				<AddRecipeForm addRecipe={this.addRecipe}/>
+				<RecipeBox recipes={this.state.recipes} removeRecipe={this.removeRecipe} toEditForm={this.toEditForm} />
+				<AddRecipeForm addRecipe={this.addRecipe} />
 			</div>
 		);
 	}
