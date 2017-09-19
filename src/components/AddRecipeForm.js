@@ -8,6 +8,7 @@ export class AddRecipeForm extends React.Component {
 		this.changeIngrStr = this.changeIngrStr.bind(this);
 		this.addIngredient = this.addIngredient.bind(this);
 		this.createRecipe = this.createRecipe.bind(this);
+		this.removeIngredient = this.removeIngredient.bind(this);
 
 		this.state = {
 			ingredientString: '',
@@ -28,8 +29,16 @@ export class AddRecipeForm extends React.Component {
 			ingredientArr: tempArr,
 			ingredientString: ''
 		});
+	}
 
-
+	removeIngredient(value) {
+		const tempArr = [...this.state.ingredientArr];
+		const index = tempArr.indexOf(value);
+		tempArr.splice(index, 1);
+		this.setState({
+			ingredientArr: tempArr
+		});
+		console.log(value);
 	}
 
 	createRecipe(e) {
@@ -48,8 +57,7 @@ export class AddRecipeForm extends React.Component {
 		this.props.closeForm(e.target.dataset.key);
 	}
 
-	render() {
-		
+	render() {		
 		return(
 			<form onSubmit={this.createRecipe} data-key="add">
 				<input ref={(input) => this.name = input} type="text" placeholder="Name" />
@@ -58,7 +66,9 @@ export class AddRecipeForm extends React.Component {
 					<button type="button" onClick={() => this.addIngredient(this.state.ingredientString)}>Add</button>
 				</div>
 				<ul>
-					{this.state.ingredientArr.map((item, i) => <li key={`${item}_${i}`}>{item}</li>)}
+					{this.state.ingredientArr.map((item, i) => {
+						return <li key={`${item}_${i}`}>{item} <button type="button" onClick={() => this.removeIngredient(item)}>-</button></li>
+					})}
 				</ul>
 				<textarea ref={(input) => this.desc = input} cols="30" rows="10" placeholder="Description"></textarea>
 				<button type="submit">Add Recipe</button>
