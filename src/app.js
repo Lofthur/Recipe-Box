@@ -78,7 +78,6 @@ class App extends React.Component {
 	}
 
 	closeForm(key) {
-		console.log(key);
 		if(key == 'edit') {
 			this.setState({
 				showEditForm: false
