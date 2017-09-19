@@ -45,12 +45,13 @@ export class AddRecipeForm extends React.Component {
 		});
 
 		this.props.addRecipe(recipe);
+		this.props.closeForm(e.target.dataset.key);
 	}
 
 	render() {
 		
 		return(
-			<form onSubmit={this.createRecipe}>
+			<form onSubmit={this.createRecipe} data-key="add">
 				<input ref={(input) => this.name = input} type="text" placeholder="Name" />
 				<div>
 					<input value={this.state.ingredientString} onChange={this.changeIngrStr} type="text" placeholder="Ingredient" />

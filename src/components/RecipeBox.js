@@ -8,9 +8,9 @@ export class RecipeBox extends React.Component {
 				<div>
 					<div className="header-area">
 						<h1>Recipe Box</h1>
-						<AddRecipe addRecipeClick={this.props.addRecipeClick} />
+						<AddRecipe openRecipe={this.props.openRecipe} />
 					</div>
-					<RecipeList recipes={this.props.recipes} removeRecipe={this.props.removeRecipe} toEditForm={this.props.toEditForm} />
+					<RecipeList recipes={this.props.recipes} removeRecipe={this.props.removeRecipe} editForm={this.props.editForm} />
 				</div>
 			);
 	}

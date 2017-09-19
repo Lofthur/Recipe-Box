@@ -18,7 +18,7 @@ export class RecipeList extends React.Component {
 							<div key={key}>
 								<Recipe recipe={this.props.recipes[key]} />
 								<button onClick={() => this.props.removeRecipe(key)}>Remove</button>
-								<button onClick={() => this.props.toEditForm(key)}>Edit</button>
+								<button onClick={() => this.props.editForm(key)}>Edit</button>
 							</div>
 							
 						)

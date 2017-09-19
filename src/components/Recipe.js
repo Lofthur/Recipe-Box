@@ -16,24 +16,26 @@ export class Recipe extends React.Component {
 	render() {
 		return(
 
-			<li>
-				<form>
-					<input type="text" value={this.props.recipe.name} className="recipe-name" onChange={this.changeHandeler} />
-					<ul>
-						{
-							this.props.recipe.ingr.map((item, i) => {
-								return(
-									<li key={`${item}_${i}`}>
-										<input type="text" value={item} onChange={this.changeHandeler} />
-									</li>
-								);
-							})
-						}
-					</ul>
-					<textarea cols="30" rows="10" value={this.props.recipe.desc} onChange={this.changeHandeler}></textarea>
-				</form>
-			</li>
 			/*<li>
+				<form>
+					<fieldset id="field" disabled="disabled">
+						<input type="text" value={this.props.recipe.name} className="recipe-name" onChange={this.changeHandeler} />
+						<ul>
+							{
+								this.props.recipe.ingr.map((item, i) => {
+									return(
+										<li key={`${item}_${i}`}>
+											<input type="text" value={item} onChange={this.changeHandeler} />
+										</li>
+									);
+								})
+							}
+						</ul>
+						<textarea cols="30" rows="10" value={this.props.recipe.desc} onChange={this.changeHandeler}></textarea>
+					</fieldset>
+				</form>
+			</li>*/
+			<li>
 				<h3>{this.props.recipe.name}</h3>
 				<ul>
 					{
@@ -41,7 +43,7 @@ export class Recipe extends React.Component {
 					}
 				</ul>
 				<div className="recipe-description">{this.props.recipe.desc}</div>
-			</li>*/
+			</li>
 		);
 	}
 }
