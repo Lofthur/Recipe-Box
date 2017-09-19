@@ -38,7 +38,6 @@ export class AddRecipeForm extends React.Component {
 		this.setState({
 			ingredientArr: tempArr
 		});
-		console.log(value);
 	}
 
 	createRecipe(e) {
