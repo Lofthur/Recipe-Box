@@ -26,6 +26,8 @@ class App extends React.Component {
 		this.closeForm = this.closeForm.bind(this);
 		this.addRecipeForm = this.addRecipeForm.bind(this);
 		this.openRecipe = this.openRecipe.bind(this);
+		this.updateRecipe = this.updateRecipe.bind(this);
+		this.updateIngredient = this.updateIngredient.bind(this);
 	}
 
 	componentDidMount() {
@@ -49,26 +51,43 @@ class App extends React.Component {
 		this.setState({
 			recipes: recipes
 		});
-
 	}
 
 	addRecipeForm() {
 		return <AddRecipeForm addRecipe={this.addRecipe} closeForm={this.closeForm} />
 	}
-
+	//Pass in key til editform component
 	editForm(key) {
-		const recipeKey = key;
-		const recipes = {...this.state.recipes};
-		const recipe = recipes[key];
+		// const recipes = {...this.state.recipes};
+		// const recipe = recipes[key];
 		this.setState({
-			editRecipe: recipe,
-			editKey: recipeKey,
+			// editRecipe: recipe,
+			editKey: key,
 			showEditForm: true
 		});
 	}
 
+	updateRecipe(key, updatedRecipe) {
+		const recipes = {...this.state.recipes};
+		recipes[key] = updatedRecipe;
+		this.setState({ recipes });
+	}
+
+	updateIngredient(key, updatedRecipe) {
+		const recipes = {...this.state.recipes};
+		recipes[key] = updatedRecipe;
+		this.setState({ recipes });
+	}
+ 
 	updateEdit() {
-		return <EditRecipeForm editRecipe={this.state.editRecipe} editKey={this.state.editKey} closeForm={this.closeForm} />
+		// return <EditRecipeForm editRecipe={this.state.editRecipe} editKey={this.state.editKey} closeForm={this.closeForm} />
+		return <EditRecipeForm 
+			editKey={this.state.editKey} 
+			recipes={this.state.recipes} 
+			updateRecipe={this.updateRecipe} 
+			closeForm={this.closeForm} 
+			updateIngredient={this.updateIngredient} 
+			/>
 	}
 
 	openRecipe() {
@@ -80,7 +99,8 @@ class App extends React.Component {
 	closeForm(key) {
 		if(key == 'edit') {
 			this.setState({
-				showEditForm: false
+				showEditForm: false,
+				editKey: ''
 			});
 		} else if(key == 'add') {
 			this.setState({
