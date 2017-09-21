@@ -85,7 +85,6 @@ export class EditRecipeForm extends React.Component {
 					</ul>
 					<textarea name="desc" cols="30" rows="10" value={recipe.desc} onChange={this.changeHandeler}></textarea>
 					<button type="submit">Save</button>
-					<button type="button">Cancel</button>
 				</form>
 			</div>
 		)
