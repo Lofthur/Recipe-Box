@@ -56,12 +56,9 @@ class App extends React.Component {
 	addRecipeForm() {
 		return <AddRecipeForm addRecipe={this.addRecipe} closeForm={this.closeForm} />
 	}
-	//Pass in key til editform component
+
 	editForm(key) {
-		// const recipes = {...this.state.recipes};
-		// const recipe = recipes[key];
 		this.setState({
-			// editRecipe: recipe,
 			editKey: key,
 			showEditForm: true
 		});
@@ -80,7 +77,6 @@ class App extends React.Component {
 	}
  
 	updateEdit() {
-		// return <EditRecipeForm editRecipe={this.state.editRecipe} editKey={this.state.editKey} closeForm={this.closeForm} />
 		return <EditRecipeForm 
 			editKey={this.state.editKey} 
 			recipes={this.state.recipes} 
@@ -113,7 +109,6 @@ class App extends React.Component {
 	render() {
 		return(
 			<div>
-				<button onClick={() => this.addRecipe()}>Test State</button>
 				<RecipeBox recipes={this.state.recipes} removeRecipe={this.removeRecipe} editForm={this.editForm}  openRecipe={this.openRecipe} />
 				{ this.state.showAddRecipeForm ? this.addRecipeForm() : null }
 				{ this.state.showEditForm ? this.updateEdit() : null }
