@@ -10,52 +10,46 @@ export class EditRecipeForm extends React.Component {
 		this.changeHandeler = this.changeHandeler.bind(this);
 		this.addIngredient = this.addIngredient.bind(this);
 		this.updateIngrString = this.updateIngrString.bind(this);
+		this.updateHandler = this.updateHandler.bind(this);
+
+		this.recipe = this.props.recipes[this.props.editKey];
+		this.ingredients = this.recipe.ingr;
 
 		this.state = {
 			ingredientString: ''
 		}
+
+		console.log(this.recipe);
 	}
 
 	updateIngrString(e) {
 		this.setState({
 			ingredientString: e.target.value
 		});
-
-		console.log(`e: ${e.target.value}`);
-		console.log(this.state.ingredientString);
 	}
 
 	addIngredient(e, value) {
-		const recipe = this.props.recipes[this.props.editKey];
-		const ingredients = recipe.ingr;
-		ingredients.push(value);
-		const updateRecipe = {
-			...recipe,
-			[e.target.name]: ingredients
-		}
-
-		this.props.updateRecipe(this.props.editKey, updateRecipe);
+		this.ingredients.push(value);
+		this.props.updateRecipe(this.props.editKey, this.updateHandler(e.target.name, this.ingredients));
 	}
 
 	removeIngredient(e, value) {
-		const recipe = this.props.recipes[this.props.editKey];
-		const ingredients = recipe.ingr;
-		const index = ingredients.indexOf(value);
-		ingredients.splice(index, 1);
-		const updateRecipe = {
-			...recipe,
-			[e.target.name]: ingredients
-		}
-		this.props.updateRecipe(this.props.editKey, updateRecipe);
+		const index = this.ingredients.indexOf(value);
+		this.ingredients.splice(index, 1);
+		this.props.updateRecipe(this.props.editKey, this.updateHandler(e.target.name, this.ingredients));
 	}
 
 	changeHandeler(e) {
-		const recipe = this.props.recipes[this.props.editKey];
+		this.props.updateRecipe(this.props.editKey, this.updateHandler(e.target.name, e.target.value));
+	}
+
+	updateHandler(name, value) {
 		const updateRecipe = {
-			...recipe,
-			[e.target.name] : e.target.value
-		};
-		this.props.updateRecipe(this.props.editKey, updateRecipe);
+			...this.recipe,
+			[name]: value
+		}
+
+		return updateRecipe;
 	}
 
 	saveEdit(e) {
@@ -65,7 +59,7 @@ export class EditRecipeForm extends React.Component {
 	
 	render() {
 		const recipe = this.props.recipes[this.props.editKey];
-
+		
 		return (
 			<div>
 				<h3>Edit Recipe</h3>
@@ -74,7 +68,7 @@ export class EditRecipeForm extends React.Component {
 					<input type="text" placeholder="Ingredient" value={this.state.ingredientString} onChange={this.updateIngrString} />
 					<button type="button" name="ingr"onClick={(e) => this.addIngredient(e, this.state.ingredientString)}>Add</button>
 					<ul>
-						{recipe.ingr.map((key, i) => {
+						{this.ingredients.map((key, i) => {
 							return (
 								<li key={`${key}_${i}`}>
 									{key}
