@@ -16,7 +16,8 @@ class App extends React.Component {
 			editRecipe: {},
 			editKey: '',
 			showEditForm: false,
-			showAddRecipeForm: false
+			showAddRecipeForm: false,
+			blurEffect: '',
 		}
 
 		this.addRecipe = this.addRecipe.bind(this);
@@ -62,6 +63,9 @@ class App extends React.Component {
 			editKey: key,
 			showEditForm: true
 		});
+		this.setState({
+			blurEffect: 'blur'
+		})
 	}
 
 	updateRecipe(key, updatedRecipe) {
@@ -103,13 +107,15 @@ class App extends React.Component {
 				showAddRecipeForm: false
 			});
 		}
-		
+		this.setState({
+			blurEffect: ''
+		});
 	}
 
 	render() {
 		return(
-			<div>
-				<RecipeBox recipes={this.state.recipes} removeRecipe={this.removeRecipe} editForm={this.editForm}  openRecipe={this.openRecipe} />
+			<div className="container">
+				<RecipeBox recipes={this.state.recipes} removeRecipe={this.removeRecipe} editForm={this.editForm}  openRecipe={this.openRecipe} blur={this.state.blurEffect}/>
 				{ this.state.showAddRecipeForm ? this.addRecipeForm() : null }
 				{ this.state.showEditForm ? this.updateEdit() : null }
 			</div>

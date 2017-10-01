@@ -61,25 +61,27 @@ export class EditRecipeForm extends React.Component {
 		const recipe = this.props.recipes[this.props.editKey];
 		
 		return (
-			<div>
-				<h3>Edit Recipe</h3>
-				<form onSubmit={this.saveEdit} data-key="edit">
-					<input type="text" name="name" value={recipe.name} onChange={this.changeHandeler} />
-					<input type="text" placeholder="Ingredient" value={this.state.ingredientString} onChange={this.updateIngrString} />
-					<button type="button" name="ingr"onClick={(e) => this.addIngredient(e, this.state.ingredientString)}>Add</button>
-					<ul>
-						{this.ingredients.map((key, i) => {
-							return (
-								<li key={`${key}_${i}`}>
-									{key}
-									<button type="button" name="ingr" onClick={(e) => this.removeIngredient(e, key)}>-</button>
-								</li>
-							)
-						})}
-					</ul>
-					<textarea name="desc" cols="30" rows="10" value={recipe.desc} onChange={this.changeHandeler}></textarea>
-					<button type="submit">Save</button>
-				</form>
+			<div className="edit-recipe">
+				<div className="inner-recipe">
+					<h3>Edit Recipe</h3>
+					<form onSubmit={this.saveEdit} data-key="edit">
+						<input type="text" name="name" value={recipe.name} onChange={this.changeHandeler} className="edit-name" />
+						<input type="text" placeholder="Ingredient" value={this.state.ingredientString} onChange={this.updateIngrString}  className="edit-ingredient"/>
+						<button type="button" name="ingr"onClick={(e) => this.addIngredient(e, this.state.ingredientString)} className="edit-add"><i className="fa fa-plus-circle fa-3x"></i></button>
+						<ul className="edit-ingredients">
+							{this.ingredients.map((key, i) => {
+								return (
+									<li key={`${key}_${i}`} >
+										<span>{key}</span>
+										<button type="button" name="ingr" onClick={(e) => this.removeIngredient(e, key)}><i className="fa fa-minus-circle"></i></button>
+									</li>
+								)
+							})}
+						</ul>
+						<textarea name="desc" cols="30" rows="10" value={recipe.desc} onChange={this.changeHandeler} className="edit-description"></textarea>
+						<button type="submit" className="edit-save">Save</button>
+					</form>
+				</div>
 			</div>
 		)
 	}

@@ -8,15 +8,15 @@ export class RecipeList extends React.Component {
 	}
 	render() {
 		return(
-			<ul>
+			<ul className="recipes-list">
 				{
 					Object.keys(this.props.recipes)
 					.map(key =>  {
 						return(
-							<div key={key}>
+							<div key={key} className="recipe-container">
 								<Recipe recipe={this.props.recipes[key]} />
-								<button onClick={() => this.props.removeRecipe(key)}>Remove</button>
-								<button onClick={() => this.props.editForm(key)}>Edit</button>
+								<span onClick={() => this.props.removeRecipe(key)}><i className="fa fa-minus-circle fa-lg"></i></span>
+								<span onClick={() => this.props.editForm(key)}><i className="fa fa-pencil fa-lg"></i></span>
 							</div>
 							
 						)
