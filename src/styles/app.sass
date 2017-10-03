@@ -8,6 +8,8 @@ $text-color: #2c3539
 $ingredient-background: #535b61
 $description-background: #f0f7fb
 $edit-color: #92b4f2
+$ingredient-color: #4668a5
+$ingredient-button: #fff
 
 body
     background: $body-color
@@ -65,7 +67,7 @@ body
         box-shadow: 0 0 5px #888
         border-radius: 2px
 
-.edit-recipe
+.edit-recipe, .add-recipe
     position: fixed
     min-height: 100vh
     min-width: 980px
@@ -90,7 +92,7 @@ body
         grid-template-rows: 50px 1fr 50px
         grid-template-areas: "name ingredient add" "ingredients description description" "save save save"
         grid-gap: 10px
-        .edit-name
+        .edit-name, .add-name
             font-size: 1.5em
             grid-area: name
             padding-left: 5px
@@ -99,7 +101,7 @@ body
             border-radius: 2px
             font-family: $roboto-font
             outline: none
-        .edit-ingredient
+        .edit-ingredient, .add-ingredient
             grid-area: ingredient
             padding-left: 5px
             font-size: 1.5em
@@ -107,37 +109,42 @@ body
             border-radius: 2px
             font-family: $roboto-font
             outline: none
-        .edit-add
+        .edit-add, .add
             grid-area: add
             border: none
             background: $edit-color
             outline: none
             margin-right: 10px
-        .edit-ingredients
+        .edit-ingredients, .add-ingredients
             grid-area: ingredients
-            margin-top: 0
+            padding: 5px 5px 5px 40px
+            margin: 0 0 0 10px
+            background: $ingredient-color
+            border-radius: 2px
             li
                 padding: 5px
                 color: white
                 letter-spacing: 1px
+                font-size: 0.9em
             button
                 float: right
                 border: none
-                background: $edit-color
+                background: $ingredient-color
+                color: $ingredient-button
                 outline: none
-        .edit-description
+        .edit-description, .add-description
             grid-area: description
-            padding: 5px 5px
+            padding: 10px 5px
             margin-right: 10px
             border: none
             resize: none
             outline: none
             border-radius: 2px
-            font-size: 0.8em
+            font-size: .9em
             font-family: $roboto-font
-        .edit-save
+        .edit-save, .add-button
             grid-area: save
-            font-size: 1.5em
+            font-size: 1.6em
             margin: 5px
             border: none
             background: #4668a5

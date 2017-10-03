@@ -58,20 +58,23 @@ export class AddRecipeForm extends React.Component {
 
 	render() {		
 		return(
-			<form onSubmit={this.createRecipe} data-key="add">
-				<input ref={(input) => this.name = input} type="text" placeholder="Name" />
-				<div>
-					<input value={this.state.ingredientString} onChange={this.changeIngrStr} type="text" placeholder="Ingredient" />
-					<button type="button" onClick={() => this.addIngredient(this.state.ingredientString)}>Add</button>
+			<div className="add-recipe">
+				<div className="inner-recipe">
+					<h3>Add Recipe</h3>
+					<form onSubmit={this.createRecipe} data-key="add">
+						<input ref={(input) => this.name = input} type="text" placeholder="Name" className="add-name" />
+							<input value={this.state.ingredientString} onChange={this.changeIngrStr} type="text" placeholder="Ingredient" className="add-ingredient" />
+							<button type="button" onClick={() => this.addIngredient(this.state.ingredientString)} className="add"><i className="fa fa-plus-circle fa-3x"></i></button>
+						<ul className="add-ingredients">
+							{this.state.ingredientArr.map((item, i) => {
+								return <li key={`${item}_${i}`}>{item} <button type="button" onClick={() => this.removeIngredient(item)}><i className="fa fa-minus-circle"></i></button></li>
+							})}
+						</ul>
+						<textarea ref={(input) => this.desc = input} cols="30" rows="10" placeholder="Description" className="add-description"></textarea>
+						<button type="submit" className="add-button">Add Recipe</button>
+					</form>	
 				</div>
-				<ul>
-					{this.state.ingredientArr.map((item, i) => {
-						return <li key={`${item}_${i}`}>{item} <button type="button" onClick={() => this.removeIngredient(item)}>-</button></li>
-					})}
-				</ul>
-				<textarea ref={(input) => this.desc = input} cols="30" rows="10" placeholder="Description"></textarea>
-				<button type="submit">Add Recipe</button>
-			</form>			
+			</div>		
 		);
 	}
 }
