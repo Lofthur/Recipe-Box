@@ -92,7 +92,8 @@ class App extends React.Component {
 
 	openRecipe() {
 		this.setState({
-			showAddRecipeForm: true
+			showAddRecipeForm: true,
+			blurEffect: 'blur'
 		});
 	}
 
