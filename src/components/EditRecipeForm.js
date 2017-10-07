@@ -34,10 +34,7 @@ export class EditRecipeForm extends React.Component {
 		this.setState({
 			ingredientString: ''
 		});
-
-		// const last = setInterval(this.updateScroll, 500);
 		setTimeout(this.updateScroll, 50);
-		
 	}
 
 	updateScroll() {
