@@ -31,6 +31,11 @@ export class AddRecipeForm extends React.Component {
 		});
 	}
 
+	checkLastIngredient() {
+		const last = document.getElementById('test');
+		console.log(test);
+	}
+
 	removeIngredient(value) {
 		const tempArr = [...this.state.ingredientArr];
 		const index = tempArr.indexOf(value);

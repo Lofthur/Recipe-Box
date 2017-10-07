@@ -31,6 +31,9 @@ export class EditRecipeForm extends React.Component {
 	addIngredient(e, value) {
 		this.ingredients.push(value);
 		this.props.updateRecipe(this.props.editKey, this.updateHandler(e.target.name, this.ingredients));
+		this.setState({
+			ingredientString: ''
+		});
 	}
 
 	removeIngredient(e, value) {
@@ -66,7 +69,7 @@ export class EditRecipeForm extends React.Component {
 					<h3>Edit Recipe</h3>
 					<form onSubmit={this.saveEdit} data-key="edit">
 						<input type="text" name="name" value={recipe.name} onChange={this.changeHandeler} className="edit-name" />
-						<input type="text" placeholder="Ingredient" value={this.state.ingredientString} onChange={this.updateIngrString}  className="edit-ingredient"/>
+						<input type="text" placeholder="Ingredient" value={this.state.ingredientString} onChange={this.updateIngrString}  className="edit-ingredient" />
 						<button type="button" name="ingr"onClick={(e) => this.addIngredient(e, this.state.ingredientString)} className="edit-add"><i className="fa fa-plus-circle fa-3x"></i></button>
 						<ul className="edit-ingredients">
 							{this.ingredients.map((key, i) => {
