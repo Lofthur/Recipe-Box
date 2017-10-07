@@ -29,11 +29,13 @@ export class AddRecipeForm extends React.Component {
 			ingredientArr: tempArr,
 			ingredientString: ''
 		});
+
+		setTimeout(this.updateScroll, 50);
 	}
 
-	checkLastIngredient() {
-		const last = document.getElementById('test');
-		console.log(test);
+	updateScroll() {
+		const lastItem = document.getElementById('add-ingr');
+		const top = lastItem.scrollTop = lastItem.scrollHeight;
 	}
 
 	removeIngredient(value) {
@@ -70,7 +72,7 @@ export class AddRecipeForm extends React.Component {
 						<input ref={(input) => this.name = input} type="text" placeholder="Name" className="add-name" />
 							<input value={this.state.ingredientString} onChange={this.changeIngrStr} type="text" placeholder="Ingredient" className="add-ingredient" />
 							<button type="button" onClick={() => this.addIngredient(this.state.ingredientString)} className="add"><i className="fa fa-plus-circle fa-3x"></i></button>
-						<ul className="add-ingredients">
+						<ul className="add-ingredients" id="add-ingr">
 							{this.state.ingredientArr.map((item, i) => {
 								return <li key={`${item}_${i}`}>{item} <button type="button" onClick={() => this.removeIngredient(item)}><i className="fa fa-minus-circle"></i></button></li>
 							})}

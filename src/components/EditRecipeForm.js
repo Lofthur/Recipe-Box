@@ -34,6 +34,15 @@ export class EditRecipeForm extends React.Component {
 		this.setState({
 			ingredientString: ''
 		});
+
+		// const last = setInterval(this.updateScroll, 500);
+		setTimeout(this.updateScroll, 50);
+		
+	}
+
+	updateScroll() {
+		const lastItem = document.getElementById('edit-ingr');
+		const top = lastItem.scrollTop = lastItem.scrollHeight;
 	}
 
 	removeIngredient(e, value) {
@@ -71,7 +80,7 @@ export class EditRecipeForm extends React.Component {
 						<input type="text" name="name" value={recipe.name} onChange={this.changeHandeler} className="edit-name" />
 						<input type="text" placeholder="Ingredient" value={this.state.ingredientString} onChange={this.updateIngrString}  className="edit-ingredient" />
 						<button type="button" name="ingr"onClick={(e) => this.addIngredient(e, this.state.ingredientString)} className="edit-add"><i className="fa fa-plus-circle fa-3x"></i></button>
-						<ul className="edit-ingredients">
+						<ul className="edit-ingredients" id="edit-ingr">
 							{this.ingredients.map((key, i) => {
 								return (
 									<li key={`${key}_${i}`} >
