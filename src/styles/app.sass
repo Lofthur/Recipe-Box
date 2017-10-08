@@ -31,6 +31,11 @@ body
     display: grid
     grid-template-columns: 1fr
     justify-items: center
+    h2
+        transition: all 0.5s
+        &:hover
+            transform: rotate(180deg)
+            color: $body-color
 
 .recipes-list
     padding: 0
@@ -119,6 +124,8 @@ body
             background: $edit-color
             outline: none
             margin-right: 10px
+            &:focus
+                color: white
         .edit-ingredients, .add-ingredients
             grid-area: ingredients
             padding: 5px 5px 5px 40px
