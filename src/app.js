@@ -32,9 +32,22 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
-		this.setState({
-			recipes: recipesData
-		});
+		const localStorageRef = localStorage.getItem('recipe-box');
+
+		if(localStorageRef) {
+			this.setState({
+				recipes: JSON.parse(localStorageRef)
+			});
+		} else {
+			this.setState({
+				recipes: recipesData
+			});
+		}
+	}
+
+	componentWillUpdate(nextProps, nextState) {
+		console.log('Something Changed');
+		localStorage.setItem('recipe-box', JSON.stringify(nextState.recipes));
 	}
 
 	addRecipe(recipe) {
