@@ -32,7 +32,7 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
-		const localStorageRef = localStorage.getItem('recipe-box');
+		const localStorageRef = localStorage.getItem('lo-recipe-box');
 
 		if(localStorageRef) {
 			this.setState({
