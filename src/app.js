@@ -47,7 +47,7 @@ class App extends React.Component {
 
 	componentWillUpdate(nextProps, nextState) {
 		console.log('Something Changed');
-		localStorage.setItem('recipe-box', JSON.stringify(nextState.recipes));
+		localStorage.setItem('lo-recipe-box', JSON.stringify(nextState.recipes));
 	}
 
 	addRecipe(recipe) {
